@@ -1,0 +1,7 @@
+# Auto-restore Chinese fonts after OS update
+# This file lives at /home/root/.profile (persists across OS updates)
+# Triggered on SSH login — detects missing fonts and auto-repairs
+if [ ! -d "/usr/share/fonts/ttf/chinese" ] || [ ! -f "/etc/systemd/system/xochitl.service.d/fonts.conf" ]; then
+    /home/root/restore-fonts.sh
+    systemctl restart xochitl
+fi
